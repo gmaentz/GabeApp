@@ -27,7 +27,7 @@ resource "azurerm_public_ip" "training" {
   resource_group_name     = azurerm_resource_group.training.name
   allocation_method       = "Dynamic"
   idle_timeout_in_minutes = 30
-  domain_name_label       = "azdomain"
+  domain_name_label       = lower(var.prefix)
 }
 
 resource "azurerm_network_interface" "training" {
