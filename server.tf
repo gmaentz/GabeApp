@@ -3,7 +3,8 @@ resource "azurerm_virtual_machine" "training" {
   location              = azurerm_resource_group.training.location
   resource_group_name   = azurerm_resource_group.training.name
   network_interface_ids = [azurerm_network_interface.training.id]
-  vm_size               = "Standard_F2"
+  # vm_size               = "Standard_F2"
+  vm_size               = "B2ms" 
 
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
@@ -56,7 +57,7 @@ resource "azurerm_virtual_machine" "training" {
       "sudo apt update",
       "sudo apt install -y python3-pip python3-flask",
       "python3 -m flask --version",
-      "npm install -g cowsay",
+      "sudo apt-get install -y cowsay",
       "sudo FLASK_APP=hello.py nohup flask run --host=0.0.0.0 --port=8000 &",
       "sleep 1",
       "cowsay Terraform Rocks"
