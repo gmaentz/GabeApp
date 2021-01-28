@@ -55,8 +55,10 @@ resource "azurerm_virtual_machine" "training" {
       "sudo apt update",
       "sudo apt install -y python3-pip python3-flask",
       "python3 -m flask --version",
+      "npm install -g cowsay",
       "sudo FLASK_APP=hello.py nohup flask run --host=0.0.0.0 --port=8000 &",
-      "sleep 1"
+      "sleep 1",
+      "cowsay Terraform Rocks"
     ]
   }
 
