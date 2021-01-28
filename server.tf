@@ -52,18 +52,33 @@ resource "azurerm_virtual_machine" "training" {
     }
 
     inline = [
-      "python3 -V",
       "sudo apt update",
-      "sudo apt install -y python3-pip python3-flask",
-      "python3 -m flask --version",
       "sudo apt-get install -y cowsay",
-      "sudo FLASK_APP=hello.py nohup flask run --host=0.0.0.0 --port=8000 &",
-      "sleep 1",
-      "cowsay Terraform Rocks"
     ]
   }
 
   tags = {
     environment = var.EnvironmentTag
+  }
+}
+
+resource "null_resource" "MessageOfTheDay" {
+
+  triggers = {
+    MessageOfTheDay = var.MessageOfTheDay
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      host     = azurerm_public_ip.training.fqdn
+      type     = "ssh"
+      user     = var.admin_username
+      password = var.admin_password
+    }
+
+    inline = [
+      "cowsay ${var.MessageOfTheDay}"
+    ]
+
   }
 }
