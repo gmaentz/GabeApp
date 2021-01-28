@@ -51,7 +51,7 @@ resource "azurerm_virtual_machine" "training" {
 resource "null_resource" "MessageOfTheDay" {
 
   triggers = {
-    MessageOfTheDay = var.MessageOfTheDay
+    MessageOfTheDay = timestamp()
   }
 
   provisioner "remote-exec" {
@@ -65,7 +65,7 @@ resource "null_resource" "MessageOfTheDay" {
     inline = [
       "sudo apt update",
       "sudo apt-get install -y cowsay",
-      "cowsay ${var.MessageOfTheDay}"
+      "cowsay -f default ${var.MessageOfTheDay}"
     ]
 
   }
