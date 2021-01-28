@@ -4,7 +4,7 @@ resource "azurerm_virtual_machine" "training" {
   resource_group_name   = azurerm_resource_group.training.name
   network_interface_ids = [azurerm_network_interface.training.id]
   # vm_size               = "Standard_F2"
-  vm_size               = "Standard_B2s" 
+  vm_size = "Standard_B2s"
 
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
@@ -43,7 +43,6 @@ resource "azurerm_virtual_machine" "training" {
     destination = "hello.py"
   }
 
-/*
   provisioner "remote-exec" {
     connection {
       host     = azurerm_public_ip.training.fqdn
@@ -63,7 +62,7 @@ resource "azurerm_virtual_machine" "training" {
       "cowsay Terraform Rocks"
     ]
   }
-*/
+
   tags = {
     environment = var.EnvironmentTag
   }
