@@ -1,5 +1,5 @@
 resource "azurerm_virtual_machine" "training" {
-  name                  = "${var.prefix}newnamevm"
+  name                  = "${var.prefix}vm"
   location              = azurerm_resource_group.training.location
   resource_group_name   = azurerm_resource_group.training.name
   network_interface_ids = [azurerm_network_interface.training.id]
@@ -42,6 +42,7 @@ resource "azurerm_virtual_machine" "training" {
     destination = "hello.py"
   }
 
+/*
   provisioner "remote-exec" {
     connection {
       host     = azurerm_public_ip.training.fqdn
@@ -61,7 +62,7 @@ resource "azurerm_virtual_machine" "training" {
       "cowsay Terraform Rocks"
     ]
   }
-
+*/
   tags = {
     environment = var.EnvironmentTag
   }
