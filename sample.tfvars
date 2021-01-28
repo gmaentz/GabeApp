@@ -1,6 +1,6 @@
 resource_group_name = "DevApp-Feature"
 EnvironmentTag      = "Feature"
-prefix              = "GabeApp-Feature"
+prefix              = "GabeApp"
 location            = "East US"
 computer_name       = "myserver"
 admin_username      = "testadmin"
