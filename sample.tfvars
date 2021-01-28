@@ -1,5 +1,5 @@
-resource_group_name = "DevApp"
-EnvironmentTag      = "DEV"
+resource_group_name = "DevApp-Feature"
+EnvironmentTag      = "Feature"
 prefix              = "GabeApp"
 location            = "East US"
 computer_name       = "myserver"

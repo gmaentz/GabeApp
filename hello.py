@@ -9,7 +9,7 @@ def hello_world():
     return """<!DOCTYPE html>
 <html>
 <head>
-    <title>Kittens</title>
+    <title>Kittens - DEV</title>
 </head>
 <body>
     <img src="http://placekitten.com/200/300" alt="User Image">
