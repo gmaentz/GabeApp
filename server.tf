@@ -43,20 +43,6 @@ resource "azurerm_virtual_machine" "training" {
     destination = "hello.py"
   }
 
-  provisioner "remote-exec" {
-    connection {
-      host     = azurerm_public_ip.training.fqdn
-      type     = "ssh"
-      user     = var.admin_username
-      password = var.admin_password
-    }
-
-    inline = [
-      "sudo apt update",
-      "sudo apt-get install -y cowsay",
-    ]
-  }
-
   tags = {
     environment = var.EnvironmentTag
   }
@@ -77,6 +63,8 @@ resource "null_resource" "MessageOfTheDay" {
     }
 
     inline = [
+      "sudo apt update",
+      "sudo apt-get install -y cowsay",
       "cowsay ${var.MessageOfTheDay}"
     ]
 
