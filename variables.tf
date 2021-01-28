@@ -20,3 +20,8 @@ variable "private_ip_address" {
   type        = string
   description = "Private IP for Server"
 }
+
+variable "MessageOfTheDay" {
+  type        = string
+  description = "Message of the Day"
+}
