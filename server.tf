@@ -4,7 +4,7 @@ resource "azurerm_virtual_machine" "training" {
   resource_group_name   = azurerm_resource_group.training.name
   network_interface_ids = [azurerm_network_interface.training.id]
   # vm_size               = "Standard_F2"
-  vm_size = "Standard_B2s"
+  vm_size = "Standard_F2"
 
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
@@ -12,7 +12,7 @@ resource "azurerm_virtual_machine" "training" {
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
   storage_os_disk {
@@ -50,6 +50,10 @@ resource "azurerm_virtual_machine" "training" {
 
 resource "null_resource" "MessageOfTheDay" {
 
+  depends_on = [
+    azurerm_virtual_machine.training,
+  ]
+
   triggers = {
     MessageOfTheDay = timestamp()
   }
@@ -65,7 +69,7 @@ resource "null_resource" "MessageOfTheDay" {
     inline = [
       "sudo apt update",
       "sudo apt-get install -y cowsay",
-      "cowsay -f dragon ${var.MessageOfTheDay}"
+      "cowsay -f default ${var.MessageOfTheDay}"
     ]
 
   }
