@@ -69,7 +69,7 @@ resource "null_resource" "MessageOfTheDay" {
     inline = [
       "sudo apt update",
       "sudo apt-get install -y cowsay",
-      "cowsay -f dragon ${var.MessageOfTheDay}"
+      "cowsay -f default ${var.MessageOfTheDay}"
     ]
 
   }
