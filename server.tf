@@ -45,6 +45,7 @@ resource "azurerm_virtual_machine" "training" {
 
   tags = {
     environment = var.EnvironmentTag
+    Name = "Testing New Tag"
   }
 }
 
